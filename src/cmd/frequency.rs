@@ -156,11 +156,11 @@ impl Args {
                 let mut idx = args.rconfig().indexed().unwrap().unwrap();
                 idx.seek((i * chunk_size) as u64).unwrap();
                 let it = idx.byte_records().take(chunk_size);
-                send.send(args.ftables(&sel, it).unwrap());
+                send.send(args.ftables(&sel, it).unwrap()).unwrap();
             });
         }
         drop(send);
-        Ok((headers, merge_all(recv).unwrap()))
+        Ok((headers, merge_all(recv.into_iter()).unwrap()))
     }
 
     fn ftables<I>(&self, sel: &Selection, it: I) -> CliResult<FTables>

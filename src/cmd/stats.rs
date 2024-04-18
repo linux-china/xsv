@@ -146,11 +146,11 @@ impl Args {
                 let mut idx = args.rconfig().indexed().unwrap().unwrap();
                 idx.seek((i * chunk_size) as u64).unwrap();
                 let it = idx.byte_records().take(chunk_size);
-                send.send(args.compute(&sel, it).unwrap());
+                send.send(args.compute(&sel, it).unwrap()).unwrap();
             });
         }
         drop(send);
-        Ok((headers, merge_all(recv).unwrap_or_else(Vec::new)))
+        Ok((headers, merge_all(recv.into_iter()).unwrap_or_else(Vec::new)))
     }
 
     fn stats_to_records(&self, stats: Vec<Stats>) -> Vec<csv::StringRecord> {
@@ -162,7 +162,7 @@ impl Args {
         for mut stat in stats.into_iter() {
             let (send, recv) = channel::bounded(0);
             results.push(recv);
-            pool.execute(move || { send.send(stat.to_record()); });
+            pool.execute(move || { send.send(stat.to_record()).unwrap(); });
         }
         for (i, recv) in results.into_iter().enumerate() {
             records[i] = recv.recv().unwrap();

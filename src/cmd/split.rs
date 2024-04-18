@@ -120,7 +120,7 @@ impl Args {
             });
         }
         drop(tx);
-        rx.recv();
+        rx.recv().unwrap();
         Ok(())
     }
 

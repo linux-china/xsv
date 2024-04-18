@@ -32,9 +32,9 @@ opt-level = 3
 
 [dependencies]
 byteorder = "1"
-crossbeam-channel = "0.2.6"
+crossbeam-channel = "0.5"
 csv = "1"
-csv-index = "0.1.5"
+csv-index = "0.1.6"
 docopt = "1"
 filetime = "0.2"
 num_cpus = "1.4"
