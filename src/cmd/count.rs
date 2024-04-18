@@ -1,8 +1,8 @@
 use csv;
 
-use CliResult;
-use config::{Delimiter, Config};
-use util;
+use crate::CliResult;
+use crate::config::{Delimiter, Config};
+use crate::util;
 
 static USAGE: &'static str = "
 Prints a count of the number of records in the CSV data.

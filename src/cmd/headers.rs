@@ -2,9 +2,9 @@ use std::io;
 
 use tabwriter::TabWriter;
 
-use CliResult;
-use config::Delimiter;
-use util;
+use crate::CliResult;
+use crate::config::Delimiter;
+use crate::util;
 
 static USAGE: &'static str = "
 Prints the fields of the first row in the CSV data.
@@ -57,7 +57,7 @@ pub fn run(argv: &[&str]) -> CliResult<()> {
         }
     }
 
-    let mut wtr: Box<io::Write> =
+    let mut wtr: Box<dyn io::Write> =
         if args.flag_just_names {
             Box::new(io::stdout())
         } else {

@@ -8,11 +8,10 @@ use std::time;
 
 use csv;
 use docopt::Docopt;
-use num_cpus;
 use serde::de::{Deserializer, Deserialize, DeserializeOwned, Error};
 
-use CliResult;
-use config::{Config, Delimiter};
+use crate::CliResult;
+use crate::config::{Config, Delimiter};
 
 pub fn num_cpus() -> usize {
     num_cpus::get()
@@ -84,7 +83,7 @@ pub fn num_of_chunks(nitems: usize, chunk_size: usize) -> usize {
 
 pub fn last_modified(md: &fs::Metadata) -> u64 {
     use filetime::FileTime;
-    FileTime::from_last_modification_time(md).seconds_relative_to_1970()
+    FileTime::from_last_modification_time(md).unix_seconds() as u64
 }
 
 pub fn condense<'a>(val: Cow<'a, [u8]>, n: Option<usize>) -> Cow<'a, [u8]> {
@@ -187,7 +186,7 @@ impl FilenameTemplate {
     /// that we do not output headers; the caller must do that if
     /// desired.
     pub fn writer<P>(&self, path: P, unique_value: &str)
-                 -> io::Result<csv::Writer<Box<io::Write+'static>>>
+                 -> io::Result<csv::Writer<Box<dyn io::Write+'static>>>
         where P: AsRef<Path>
     {
         let filename = self.filename(unique_value);

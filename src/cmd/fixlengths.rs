@@ -2,9 +2,9 @@ use std::cmp;
 
 use csv;
 
-use CliResult;
-use config::{Config, Delimiter};
-use util;
+use crate::CliResult;
+use crate::config::{Config, Delimiter};
+use crate::util;
 
 static USAGE: &'static str = "
 Transforms CSV data so that all records have the same length. The length is

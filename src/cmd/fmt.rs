@@ -1,8 +1,8 @@
 use csv;
 
-use CliResult;
-use config::{Config, Delimiter};
-use util;
+use crate::CliResult;
+use crate::config::{Config, Delimiter};
+use crate::util;
 
 static USAGE: &'static str = "
 Formats CSV data with a custom delimiter or CRLF line endings.

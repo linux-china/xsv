@@ -6,11 +6,11 @@ use csv;
 use stats::{Frequencies, merge_all};
 use threadpool::ThreadPool;
 
-use CliResult;
-use config::{Config, Delimiter};
-use index::Indexed;
-use select::{SelectColumns, Selection};
-use util;
+use crate::CliResult;
+use crate::config::{Config, Delimiter};
+use crate::index::Indexed;
+use crate::select::{SelectColumns, Selection};
+use crate::util;
 
 static USAGE: &'static str = "
 Compute a frequency table on CSV data.

@@ -1,6 +1,6 @@
-use CliResult;
-use config::{Config, Delimiter};
-use util;
+use crate::CliResult;
+use crate::config::{Config, Delimiter};
+use crate::util;
 
 static USAGE: &'static str = "
 Reverses rows of CSV data.

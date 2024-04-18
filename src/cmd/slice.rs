@@ -1,10 +1,10 @@
 use std::fs;
 
 
-use CliResult;
-use config::{Config, Delimiter};
-use index::Indexed;
-use util;
+use crate::CliResult;
+use crate::config::{Config, Delimiter};
+use crate::index::Indexed;
+use crate::util;
 
 static USAGE: &'static str = "
 Returns the rows in the range specified (starting at 0, half-open interval).

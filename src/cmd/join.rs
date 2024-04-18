@@ -8,11 +8,11 @@ use std::str;
 use byteorder::{WriteBytesExt, BigEndian};
 use csv;
 
-use CliResult;
-use config::{Config, Delimiter};
-use index::Indexed;
-use select::{SelectColumns, Selection};
-use util;
+use crate::CliResult;
+use crate::config::{Config, Delimiter};
+use crate::index::Indexed;
+use crate::select::{SelectColumns, Selection};
+use crate::util;
 
 static USAGE: &'static str = "
 Joins two sets of CSV data on the specified columns.
@@ -278,7 +278,7 @@ impl<R: io::Read + io::Seek, W: io::Write> IoState<R, W> {
 
 impl Args {
     fn new_io_state(&self)
-        -> CliResult<IoState<fs::File, Box<io::Write+'static>>> {
+        -> CliResult<IoState<fs::File, Box<dyn io::Write+'static>>> {
         let rconf1 = Config::new(&Some(self.arg_input1.clone()))
             .delimiter(self.flag_delimiter)
             .no_headers(self.flag_no_headers)

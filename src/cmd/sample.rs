@@ -5,10 +5,10 @@ use csv;
 use rand::{self, Rng, SeedableRng};
 use rand::rngs::StdRng;
 
-use CliResult;
-use config::{Config, Delimiter};
-use index::Indexed;
-use util;
+use crate::CliResult;
+use crate::config::{Config, Delimiter};
+use crate::index::Indexed;
+use crate::util;
 
 static USAGE: &'static str = "
 Randomly samples CSV data uniformly using memory proportional to the size of

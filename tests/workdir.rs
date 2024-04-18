@@ -10,11 +10,11 @@ use std::time::Duration;
 
 use csv;
 
-use Csv;
+use crate::Csv;
 
 static XSV_INTEGRATION_TEST_DIR: &'static str = "xit";
 
-static NEXT_ID: atomic::AtomicUsize = atomic::ATOMIC_USIZE_INIT;
+static NEXT_ID: atomic::AtomicUsize = atomic::AtomicUsize::new(0);
 
 pub struct Workdir {
     root: PathBuf,
