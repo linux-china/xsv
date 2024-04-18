@@ -19,12 +19,12 @@ push:
 
 dev:
 	cargo build
-	cp ./target/xsv ~/bin/bin/xsv
+	cp ./target/xsv ~/bin/xsv
 
 release:
 	cargo build --release
 	mkdir -p ~/bin/bin
-	cp ./target/release/xsv ~/bin/bin/xsv
+	cp ./target/release/xsv ~/bin/xsv
 
 github:
 	./scripts/build-release
